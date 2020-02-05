@@ -53,7 +53,7 @@ db_get_party_elections <- function (year, position, candidate_or_party_number, s
                     AND num_turno = $5) AS v
           GROUP BY 1, 2, 3, 4, 5",
                        param = list(party_number, state, position, year, turn))
-  
+      DBI::dbDisconnect(conn)
   setnames(result, toupper(names(result)))
   return(result)
 }
